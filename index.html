@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Menu Sushi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="gambar/LOGO_FAF.png" alt="fatonyahmadfauzi" width="auto" height="30">
+            </a>
+        </div>
+    </nav>
+
+    <header class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-md-6 mb-5">
+                            <h2>Menu Sushi</h2>
+                            <p>Cek semua daftar menu sushi baru!</p>
+                            <a href="daftar_sushi_tersedia" class="btn btn-primary" title="Pergi ke halaman Daftar Sushi Tersedia">
+                                See Sushi Menu
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <h2>PENDAFTARAN</h2>
+                                <h2>MENU SUSHI</h2>
+                            </div>
+                            <div class="text-center">
+                                <a href="https://www.bing.com/ck/a?!&&p=..." target="_blank">
+                                    <img src="gambar/th.webp" alt="Picture from Microsoft Bing" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mt-1">
+        <!-- Form for input data -->
+        <section class="row justify-content-center">
+            <div class="col-md">
+                <div class="mt-5 p-5 form-input bg-white rounded">
+                    <div class="form-container">
+                        <form id="sushiForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon" for="nama">Nama</label>
+                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Sushi" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon2" for="paketmenu">Paket Menu</label>
+                                        <select id="paketmenu" name="paketmenu" class="form-control" required>
+                                            <option value="Standar">Standar</option>
+                                            <option value="VIP">VIP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon3">Tambahan</label>
+                                        <div class="form-check">
+                                            <input id="sausShoyu" class="form-check-input" type="checkbox" name="tambahan" value="Saus Shoyu">
+                                            <label class="form-check-label" for="sausShoyu">Saus Shoyu</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="wasabi" class="form-check-input" type="checkbox" name="tambahan" value="Wasabi">
+                                            <label class="form-check-label" for="wasabi">Wasabi</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon4" for="harga">Harga</label>
+                                        <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary" onclick="saveProfile()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
+                    <h5 class="resource-heading">Resource</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="light-link" href="https://www.figma.com/">Figma</a></li>
+                        <li><a class="light-link" href="https://code.visualstudio.com/">VisualStudio Code</a></li>
+                        <li><a class="light-link">Supported Hardware</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
+                    <h5 class="resource-heading">Activity</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="light-link">FullStack Developer</a></li>
+                        <li><a class="light-link">UI / UX</a></li>
+                        <li><a class="light-link">Desainer Grafis</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
+                    <h5 class="resource-heading">Social</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="light-link" href="https://www.instagram.com/fatonyahmadfauzi">Instagram</a></li>
+                        <li><a class="light-link" href="https://www.tiktok.com/@fatonyahmadfauzi">TikTok</a></li>
+                        <li><a class="light-link" href="https://twitter.com/fatonyahmad89">Twitter</a></li>
+                        <li><a class="light-link" href="https://facebook.com/fatonyahmadfauzi">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <p>FATONY AHMAD FAUZI © <span id="year"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function saveProfile() {
+            var nama = document.getElementById('nama').value;
+            var paketmenu = document.getElementById('paketmenu').value;
+            var sausShoyu = document.getElementById('sausShoyu').checked ? 'Saus Shoyu' : '';
+            var wasabi = document.getElementById('wasabi').checked ? 'Wasabi' : '';
+            var harga = parseFloat(document.getElementById('harga').value);
+
+            // Array Daftar tambahan dan Harga (sesuai yang sudah diberikan sebelumnya)
+            const Paket_menu = ["Standar", "VIP"];
+            const hargaPaket_menu = { "Standar": 350000, "VIP": 1250000 };
+            const hargaTambahan = { "Saus Shoyu": 65000, "Wasabi": 35000 };
+
+            // Fungsi Menghitung Total (sesuai yang sudah diberikan sebelumnya)
+            function hargaSubtotal(harga_paket, harga_tambahan) {
+                const nilaiHargaA = hargaPaket_menu[harga_paket] || 0;
+                let nilaiHargaB = 0;
+                harga_tambahan.forEach((tambahan) => {
+                    if (hargaTambahan[tambahan]) {
+                        nilaiHargaB += hargaTambahan[tambahan];
+                    }
+                });
+
+                return nilaiHargaA + nilaiHargaB;
+            }
+
+            function totalHarga(Subtotal, Harga_sushi) {
+                return Subtotal + Harga_sushi;
+            }
+
+            const subtotal = hargaSubtotal(paketmenu, [sausShoyu, wasabi]);
+            const totalHargaSushi = totalHarga(subtotal, harga);
+
+            // Menghilangkan nilai kosong dari array tambahan
+            let tambahanCleaned = [sausShoyu, wasabi].filter(item => item !== '');
+
+            if (nama && paketmenu && harga) {
+                var existingData = localStorage.getItem("sushi_data"); // Mengubah "data" menjadi "sushi_data"
+                var newData = {
+                    nama: nama,
+                    paketmenu: paketmenu,
+                    tambahan: tambahanCleaned,
+                    harga: harga,
+                    subtotal: subtotal,
+                    totalHarga: totalHargaSushi
+                }
+
+                if (existingData) {
+                    existingData = JSON.parse(existingData);
+                    existingData.push(newData);
+                    localStorage.setItem("sushi_data", JSON.stringify(existingData));
+                } else {
+                    localStorage.setItem("sushi_data", JSON.stringify([newData]));
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Script untuk generate tahun otomatis dalam copyright
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

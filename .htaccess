@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Menghilangkan ekstensi .html dari URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Mengatur redirect untuk index.html
+RewriteRule ^index$ index.html [NC,L]
+
+# Mengatur redirect untuk daftar_sushi_tersedia.html
+RewriteRule ^daftar_sushi_tersedia$ daftar_sushi_tersedia.html [NC,L]

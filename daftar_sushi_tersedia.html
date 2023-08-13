@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Sushi Tersedia</title>
+
+    <!-- DataTable CSS  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
+</head>
+<body>
+    <!-- ... Bagian Header ... -->
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="gambar/LOGO_FAF.png" alt="fatonyahmadfauzi" width="auto" height="30">
+            </a>
+        </div>
+    </nav>
+
+    <header class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-md-6 mb-5">
+                            <h2>Pendaftaran</h2>
+                            <p>Tambahkan daftar menu sushi baru!</p>
+                            <a href="index" class="btn btn-primary" title="Pergi ke halaman Daftar Sushi Tersedia">
+                                Daftarkan
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <h2>DAFTAR SUSHI</h2>
+                                <h2>TERSEDIA</h2>
+                            </div>
+                            <div class="text-center">
+                                <a href="https://www.bing.com/ck/a?!&&p=..." target="_blank">
+                                    <img src="gambar/th.webp" alt="Picture from Microsoft Bing" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mt-1">
+        <section class="row justify-content-center">
+            <div class="col-md">
+                <div class="container p-5 my-5 bg-light">
+                    <table id="myTable" class="table table-striped nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>Paket Menu</th>
+                                <th>Tambahan</th>
+                                <th>Harga</th>
+                                <th>Subtotal</th>
+                                <th>Total Harga</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelDataSushi">
+                            <!-- Data akan ditampilkan di sini -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ... Bagian Footer ... -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
+                    <h5 class="resource-heading">Resource</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="light-link" href="https://www.figma.com/">Figma</a></li>
+                        <li><a class="light-link" href="https://code.visualstudio.com/">VisualStudio Code</a></li>
+                        <li><a class="light-link">Supported Hardware</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
+                    <h5 class="resource-heading">Activity</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="light-link">FullStack Developer</a></li>
+                        <li><a class="light-link">UI / UX</a></li>
+                        <li><a class="light-link">Desainer Grafis</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
+                    <h5 class="resource-heading">Social</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="light-link" href="https://www.instagram.com/fatonyahmadfauzi">Instagram</a></li>
+                        <li><a class="light-link" href="https://www.tiktok.com/@fatonyahmadfauzi">TikTok</a></li>
+                        <li><a class="light-link" href="https://twitter.com/fatonyahmad89">Twitter</a></li>
+                        <li><a class="light-link" href="https://facebook.com/fatonyahmadfauzi">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <p>FATONY AHMAD FAUZI © <span id="year"></span></p>
+            </div>
+        </div>
+    </div>
+
+        <!-- DataTable JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
+    <script>
+        var nomor = 1; // Menyimpan nomor urut untuk setiap data
+
+        // Fungsi untuk mengformat angka menjadi format mata uang
+        function formatCurrency(amount) {
+            return "Rp " + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        // Fungsi untuk menampilkan data sushi
+        function displaySushiData() {
+            var tabelDataSushi = document.getElementById('tabelDataSushi');
+            var sushiData = JSON.parse(localStorage.getItem("sushi_data"));
+
+            // Hapus semua baris sebelum menambahkan data baru
+            while (tabelDataSushi.rows.length > 0) {
+                tabelDataSushi.deleteRow(0);
+            }
+
+            for (var i = 0; i < sushiData.length; i++) {
+                var row = tabelDataSushi.insertRow();
+                var cellNomor = row.insertCell(0);
+                var cellNama = row.insertCell(1);
+                var cellPaketMenu = row.insertCell(2);
+                var cellTambahan = row.insertCell(3);
+                var cellHarga = row.insertCell(4);
+                var cellSubtotal = row.insertCell(5);
+                var cellTotalHarga = row.insertCell(6);
+                var cellAksi = row.insertCell(7);
+
+                var currentSushi = sushiData[i]; // Ambil data sushi pada indeks ke-i
+
+                cellNomor.innerHTML = nomor++;
+                cellNama.innerHTML = currentSushi.nama;
+                cellPaketMenu.innerHTML = currentSushi.paketmenu;
+                cellTambahan.innerHTML = currentSushi.tambahan.join(', '); // Menggabungkan tambahan menjadi string terpisah koma
+                cellHarga.innerHTML = formatCurrency(currentSushi.harga);
+                cellSubtotal.innerHTML = formatCurrency(currentSushi.subtotal);
+                cellTotalHarga.innerHTML = formatCurrency(currentSushi.totalHarga);
+
+                var deleteButton = document.createElement("button");
+                deleteButton.innerHTML = "Delete";
+                deleteButton.classList.add("btn", "btn-danger");
+                deleteButton.setAttribute("data-row-index", i); // Menggunakan indeks i sebagai atribut data
+                deleteButton.addEventListener("click", function () {
+                    var rowIndex = parseInt(deleteButton.getAttribute("data-row-index"));
+                    tabelDataSushi.deleteRow(rowIndex);
+                    sushiData.splice(rowIndex, 1); // Menghapus data dari array
+                    localStorage.setItem("sushi_data", JSON.stringify(sushiData)); // Update localStorage
+                    displaySushiData(); // Memanggil ulang fungsi displaySushiData() agar nomor urut terupdate
+                });
+
+                cellAksi.appendChild(deleteButton);
+            }
+        }
+
+        // Panggil fungsi displaySushiData() saat halaman dimuat
+        displaySushiData();
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+    <script>
+        // Script untuk generate tahun otomatis dalam copyright
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+</body>
+</html>
