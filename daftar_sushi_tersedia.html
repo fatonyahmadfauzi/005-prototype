@@ -144,7 +144,7 @@
                 tabelDataSushi.deleteRow(0);
             }
 
-            for (var i = 0; i < sushiData.length; i++) {
+            for (var i = sushiData.length - 1; i >= 0; i--) {
                 var row = tabelDataSushi.insertRow();
                 var cellNomor = row.insertCell(0);
                 var cellNama = row.insertCell(1);
