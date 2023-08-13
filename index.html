@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Menu Sushi</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="library/css/bootstrap.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,7 +33,7 @@
                                 <h2>MENU SUSHI</h2>
                             </div>
                             <div class="text-center">
-                                <a href="https://www.bing.com/ck/a?!&&p=..." target="_blank">
+                                <a href="https://www.bing.com/ck/a?!&&p=9272cef5365a687cJmltdHM9MTY5MDkzNDQwMCZpZ3VpZD0zMGNmNjVmNC0zZWJjLTY2MWYtM2VkNy03NmViM2Y3ZjY3ZWImaW5zaWQ9NjM5Mg&ptn=3&hsh=3&fclid=30cf65f4-3ebc-661f-3ed7-76eb3f7f67eb&u=a1L2ltYWdlcy9zZWFyY2g_cT1zdXNoaSZjYm49S25vd2xlZGdlQ2FyZCZzdGlkPWFiNDIxZTMyLTc5ZWMtZjk1Ni05M2IwLWIxMjdlZWU1YTA3OSZGT1JNPUtDSElNTQ&ntb=1" target="_blank">
                                     <img src="gambar/th.webp" alt="Picture from Microsoft Bing" class="img-fluid">
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
         <!-- Form for input data -->
         <section class="row justify-content-center">
             <div class="col-md">
-                <div class="mt-5 p-5 form-input bg-white rounded">
+                <div class="my-2 p-5 form-input bg-light rounded">
                     <div class="form-container">
                         <form id="sushiForm">
                             <div class="row">
@@ -92,12 +92,16 @@
                         </form>
                     </div>
                 </div>
+                <!-- Alert Success -->
+                <div id="successAlert" class="alert alert-success mt-3" role="alert" style="display: none;">
+                    Data berhasil disimpan!
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
                     <h5 class="resource-heading">Resource</h5>
@@ -190,6 +194,21 @@
                 } else {
                     localStorage.setItem("sushi_data", JSON.stringify([newData]));
                 }
+
+                // Display success alert
+                document.getElementById("successAlert").style.display = "block";
+
+                // Reset form fields
+                document.getElementById('nama').value = '';
+                document.getElementById('paketmenu').value = 'Standar';
+                document.getElementById('sausShoyu').checked = false;
+                document.getElementById('wasabi').checked = false;
+                document.getElementById('harga').value = '';
+
+                // Hide success alert after 3 seconds
+                setTimeout(function () {
+                    document.getElementById("successAlert").style.display = "none";
+                }, 3000);
             }
         }
     </script>
@@ -199,8 +218,8 @@
         document.getElementById("year").innerHTML = new Date().getFullYear();
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="library/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="library/js/popper.min.js"></script>
+    <script src="library/js/bootstrap.min.js"></script>
 </body>
 </html>
