@@ -141,12 +141,22 @@
     </div>
 
     <script>
+        function generateSushiId(currentCount) {
+            return "S" + currentCount.toString().padStart(2, '0');
+        }
+
         function saveProfile() {
             var nama = document.getElementById('nama').value;
             var paketmenu = document.getElementById('paketmenu').value;
             var sausShoyu = document.getElementById('sausShoyu').checked ? 'Saus Shoyu' : '';
             var wasabi = document.getElementById('wasabi').checked ? 'Wasabi' : '';
             var harga = parseFloat(document.getElementById('harga').value);
+
+            console.log("Nama:", nama);
+            console.log("Paket Menu:", paketmenu);
+            console.log("Saus Shoyu:", sausShoyu);
+            console.log("Wasabi:", wasabi);
+            console.log("Harga:", harga);
 
             // Array Daftar tambahan dan Harga (sesuai yang sudah diberikan sebelumnya)
             const Paket_menu = ["Standar", "VIP"];
@@ -177,8 +187,16 @@
             let tambahanCleaned = [sausShoyu, wasabi].filter(item => item !== '');
 
             if (nama && paketmenu && harga) {
-                var existingData = localStorage.getItem("sushi_data"); // Mengubah "data" menjadi "sushi_data"
+                // Generate sushi ID
+                var sushiCount = localStorage.getItem("sushi_count") || 0;
+                sushiCount++;
+                localStorage.setItem("sushi_count", sushiCount);
+                var sushiId = generateSushiId(sushiCount);
+
+                var existingData = JSON.parse(localStorage.getItem("sushi_data")) || [];
+
                 var newData = {
+                    id_sushi: sushiId,
                     nama: nama,
                     paketmenu: paketmenu,
                     tambahan: tambahanCleaned,
@@ -187,16 +205,12 @@
                     totalHarga: totalHargaSushi
                 }
 
-                if (existingData) {
-                    existingData = JSON.parse(existingData);
-                    existingData.push(newData);
-                    localStorage.setItem("sushi_data", JSON.stringify(existingData));
-                } else {
-                    localStorage.setItem("sushi_data", JSON.stringify([newData]));
-                }
+                existingData.push(newData);
+                localStorage.setItem("sushi_data", JSON.stringify(existingData));
 
                 // Display success alert
                 document.getElementById("successAlert").style.display = "block";
+                console.log("Success alert displayed");
 
                 // Reset form fields
                 document.getElementById('nama').value = '';
@@ -204,10 +218,12 @@
                 document.getElementById('sausShoyu').checked = false;
                 document.getElementById('wasabi').checked = false;
                 document.getElementById('harga').value = '';
+                console.log("Form fields reset");
 
                 // Hide success alert after 3 seconds
                 setTimeout(function () {
                     document.getElementById("successAlert").style.display = "none";
+                    console.log("Success alert hidden");
                 }, 3000);
             }
         }

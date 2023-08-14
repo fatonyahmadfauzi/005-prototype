@@ -165,24 +165,6 @@
                     cellHarga.innerHTML = formatCurrency(currentSushi.harga);
                     cellSubtotal.innerHTML = formatCurrency(currentSushi.subtotal);
                     cellTotalHarga.innerHTML = formatCurrency(currentSushi.totalHarga);
-
-                    var deleteButton = document.createElement("button");
-                    deleteButton.innerHTML = "Delete";
-                    deleteButton.classList.add("btn", "btn-danger");
-                    deleteButton.setAttribute("data-row-index", i); // Menggunakan indeks i sebagai atribut data
-                    deleteButton.addEventListener("click", function () {
-                        try {
-                            var rowIndex = parseInt(deleteButton.getAttribute("data-row-index"));
-                            tabelDataSushi.deleteRow(rowIndex);
-                            sushiData.splice(rowIndex, 1); // Menghapus data dari array
-                            localStorage.setItem("sushi_data", JSON.stringify(sushiData)); // Update localStorage
-                            displaySushiData(); // Memanggil ulang fungsi displaySushiData() agar nomor urut terupdate
-                        } catch (error) {
-                            console.error("Error deleting sushi data:", error);
-                        }
-                    });
-
-                    cellAksi.appendChild(deleteButton);
                 }
             } catch (error) {
                 console.error("Error displaying sushi data:", error);
