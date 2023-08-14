@@ -134,63 +134,92 @@
             return "Rp " + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
 
-        // Fungsi untuk menampilkan data sushi
         function displaySushiData() {
-            var tabelDataSushi = document.getElementById('tabelDataSushi');
-            var sushiData = JSON.parse(localStorage.getItem("sushi_data"));
+            try {
+                var tabelDataSushi = document.getElementById('tabelDataSushi');
+                var sushiData = JSON.parse(localStorage.getItem("sushi_data"));
 
-            // Hapus semua baris sebelum menambahkan data baru
-            while (tabelDataSushi.rows.length > 0) {
-                tabelDataSushi.deleteRow(0);
-            }
+                // Hapus semua baris sebelum menambahkan data baru
+                while (tabelDataSushi.rows.length > 0) {
+                    tabelDataSushi.deleteRow(0);
+                }
 
-            for (var i = sushiData.length - 1; i >= 0; i--) {
-                var row = tabelDataSushi.insertRow();
-                var cellNomor = row.insertCell(0);
-                var cellNama = row.insertCell(1);
-                var cellPaketMenu = row.insertCell(2);
-                var cellTambahan = row.insertCell(3);
-                var cellHarga = row.insertCell(4);
-                var cellSubtotal = row.insertCell(5);
-                var cellTotalHarga = row.insertCell(6);
-                var cellAksi = row.insertCell(7);
+                // Dalam displaySushiData():
+                for (var i = sushiData.length - 1; i >= 0; i--) {
+                    var row = tabelDataSushi.insertRow();
+                    var cellNomor = row.insertCell(0);
+                    var cellNama = row.insertCell(1);
+                    var cellPaketMenu = row.insertCell(2);
+                    var cellTambahan = row.insertCell(3);
+                    var cellHarga = row.insertCell(4);
+                    var cellSubtotal = row.insertCell(5);
+                    var cellTotalHarga = row.insertCell(6);
+                    var cellAksi = row.insertCell(7);
 
-                var currentSushi = sushiData[i]; // Ambil data sushi pada indeks ke-i
+                    var currentSushi = sushiData[i]; // Ambil data sushi pada indeks ke-i
 
-                cellNomor.innerHTML = nomor++;
-                cellNama.innerHTML = currentSushi.nama;
-                cellPaketMenu.innerHTML = currentSushi.paketmenu;
-                cellTambahan.innerHTML = currentSushi.tambahan.join(', '); // Menggabungkan tambahan menjadi string terpisah koma
-                cellHarga.innerHTML = formatCurrency(currentSushi.harga);
-                cellSubtotal.innerHTML = formatCurrency(currentSushi.subtotal);
-                cellTotalHarga.innerHTML = formatCurrency(currentSushi.totalHarga);
+                    cellNomor.innerHTML = nomor++;
+                    cellNama.innerHTML = currentSushi.nama;
+                    cellPaketMenu.innerHTML = currentSushi.paketmenu;
+                    cellTambahan.innerHTML = currentSushi.tambahan.join(', '); // Menggabungkan tambahan menjadi string terpisah koma
+                    cellHarga.innerHTML = formatCurrency(currentSushi.harga);
+                    cellSubtotal.innerHTML = formatCurrency(currentSushi.subtotal);
+                    cellTotalHarga.innerHTML = formatCurrency(currentSushi.totalHarga);
 
-                var deleteButton = document.createElement("button");
-                deleteButton.innerHTML = "Delete";
-                deleteButton.classList.add("btn", "btn-danger");
-                deleteButton.setAttribute("data-row-index", i); // Menggunakan indeks i sebagai atribut data
-                deleteButton.addEventListener("click", function () {
-                    var rowIndex = parseInt(deleteButton.getAttribute("data-row-index"));
-                    tabelDataSushi.deleteRow(rowIndex);
-                    sushiData.splice(rowIndex, 1); // Menghapus data dari array
-                    localStorage.setItem("sushi_data", JSON.stringify(sushiData)); // Update localStorage
-                    displaySushiData(); // Memanggil ulang fungsi displaySushiData() agar nomor urut terupdate
-                });
+                    var deleteButton = document.createElement("button");
+                    deleteButton.innerHTML = "Delete";
+                    deleteButton.classList.add("btn", "btn-danger");
+                    deleteButton.setAttribute("data-row-index", i); // Menggunakan indeks i sebagai atribut data
+                    deleteButton.addEventListener("click", function () {
+                        try {
+                            var rowIndex = parseInt(deleteButton.getAttribute("data-row-index"));
+                            tabelDataSushi.deleteRow(rowIndex);
+                            sushiData.splice(rowIndex, 1); // Menghapus data dari array
+                            localStorage.setItem("sushi_data", JSON.stringify(sushiData)); // Update localStorage
+                            displaySushiData(); // Memanggil ulang fungsi displaySushiData() agar nomor urut terupdate
+                        } catch (error) {
+                            console.error("Error deleting sushi data:", error);
+                        }
+                    });
 
-                cellAksi.appendChild(deleteButton);
+                    cellAksi.appendChild(deleteButton);
+                }
+            } catch (error) {
+                console.error("Error displaying sushi data:", error);
             }
         }
-
         // Panggil fungsi displaySushiData() saat halaman dimuat
         displaySushiData();
     </script>
 
     <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable({
-                responsive: true
-            });
+        // Inisialisasi DataTable dengan opsi sorting
+        var table = $('#myTable').DataTable({
+            responsive: true,
+            order: [[1, 'asc']] // Default sorting by Name (ascending)
         });
+
+        // Tambahkan dropdown button untuk opsi pengurutan
+        $('<select>')
+            .appendTo('#myTable_wrapper .dataTables_filter')
+            .on('change', function() {
+                var value = $(this).val();
+
+                if (value === 'name-asc') {
+                    table.order([1, 'asc']).draw(); // Sort by Name (A - Z)
+                } else if (value === 'name-desc') {
+                    table.order([1, 'desc']).draw(); // Sort by Name (Z - A)
+                } else if (value === 'price-high') {
+                    table.order([4, 'desc']).draw(); // Sort by Price High to Low
+                } else if (value === 'price-low') {
+                    table.order([4, 'asc']).draw(); // Sort by Price Low to High
+                }
+            })
+            .append('<option value="" disabled selected>Sort by</option>')
+            .append('<option value="name-asc">Name A - Z</option>')
+            .append('<option value="name-desc">Name Z - A</option>')
+            .append('<option value="price-high">Price High to Low</option>')
+            .append('<option value="price-low">Price Low to High</option>');
     </script>
 
     <script>
