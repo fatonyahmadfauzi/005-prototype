@@ -5,11 +5,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
-# Mengatur redirect untuk index.html
-RewriteRule ^index$ index.html [NC,L]
+# Mengatur redirect untuk katalog_sushi.html
+RewriteRule ^katalog_sushi$ katalog_sushi.html [NC,L]
 
-# Mengatur redirect untuk daftar_sushi_tersedia.html
-RewriteRule ^daftar_sushi_tersedia$ daftar_sushi_tersedia.html [NC,L]
+# Mengatur redirect untuk list_sushi.html
+RewriteRule ^list_sushi$ list_sushi.html [NC,L]
 
-# Mengatur redirect untuk add_product.html
-RewriteRule ^add_product$ add_product.html [NC,L]
+# Mengatur redirect untuk add_sushi.html
+RewriteRule ^add_sushi$ add_sushi.html [NC,L]
