@@ -22,8 +22,30 @@
     </style>
 </head>
 <body>
-    <!-- Fetch API Navbar -->
-    <div id="navbar"></div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="gambar/LOGO_FAF - White.png" alt="" style="height: 35px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="katalog_product">Katalog Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list_product">List Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add_product">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="edit_product">Edit Product</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Bagian Header Jumbootron Dengan Splide -->
     <header class="container mt-3">
@@ -131,6 +153,30 @@
             </div>
         </div>
     </div>
+
+    <script src="library/js/jquery-3.6.0.min.js"></script>
+    <script src="library/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Mengambil nama halaman dari URL
+        var currentLocation = window.location.pathname.split("/").pop();
+
+        // Menghapus kelas "active" dari semua elemen navbar
+        var navItems = document.querySelectorAll(".navbar-nav .nav-item");
+        navItems.forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+        // Menambahkan kelas "active" ke elemen navbar yang sesuai dengan halaman saat ini
+        navItems.forEach(function(item) {
+            var link = item.querySelector(".nav-link");
+            if (link.getAttribute("href") === currentLocation) {
+            item.classList.add("active");
+            }
+        });
+        });
+    </script>
 
     <!-- Splide JS -->
     <script src="library/js/splide.min.js"></script>
