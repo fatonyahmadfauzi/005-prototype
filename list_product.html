@@ -9,49 +9,68 @@
     <!-- DataTable CSS  -->
     <link rel="stylesheet" href="library/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="library/css/responsive.bootstrap5.min.css">
+
+    <!-- Splide CSS -->
+    <link rel="stylesheet" href="library/css/splide.min.css">
+    <style>
+        .my-slider-progress {
+            background: #ccc;
+        }
+        
+        .my-slider-progress-bar {
+            background: greenyellow;
+            height: 2px;
+            transition: width 400ms ease;
+            width: 0;
+        }
+    </style>
 </head>
 <body>
-    <!-- ... Bagian Header ... -->
-    </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="gambar/LOGO_FAF.png" alt="fatonyahmadfauzi" width="auto" height="30">
-            </a>
-        </div>
-    </nav>
+    <!-- Fetch API Navbar -->
+    <div id="navbar"></div>
 
+    <!-- Bagian Header Jumbootron Dengan Splide -->
     <header class="container mt-3">
         <div class="row justify-content-center">
-            <div class="col-md">
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-md-6 mb-5">
-                            <h2>Pendaftaran</h2>
-                            <p>Tambahkan daftar menu sushi baru!</p>
-                            <a href="index" class="btn btn-primary" title="Pergi ke halaman Daftar Sushi Tersedia">
-                                Daftarkan
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-center">
-                                <h2>DAFTAR SUSHI</h2>
-                                <h2>TERSEDIA</h2>
-                            </div>
-                            <div class="text-center">
-                                <a href="https://www.bing.com/ck/a?!&&p=9272cef5365a687cJmltdHM9MTY5MDkzNDQwMCZpZ3VpZD0zMGNmNjVmNC0zZWJjLTY2MWYtM2VkNy03NmViM2Y3ZjY3ZWImaW5zaWQ9NjM5Mg&ptn=3&hsh=3&fclid=30cf65f4-3ebc-661f-3ed7-76eb3f7f67eb&u=a1L2ltYWdlcy9zZWFyY2g_cT1zdXNoaSZjYm49S25vd2xlZGdlQ2FyZCZzdGlkPWFiNDIxZTMyLTc5ZWMtZjk1Ni05M2IwLWIxMjdlZWU1YTA3OSZGT1JNPUtDSElNTQ&ntb=1" target="_blank">
-                                    <img src="gambar/th.webp" alt="Picture from Microsoft Bing" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
+            <div class="col-md"> <!-- Adjust the column width as needed -->
+                <div class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <div class="jumbotron text-center">
+                                    <h1>Welcome to Our Website</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="jumbotron text-center">
+                                    <h1>Welcome to Our Website</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="jumbotron text-center">
+                                    <h1>Welcome to Our Website</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-
+                    
+                    <!-- Add the progress bar element -->
+                    <div class="my-slider-progress">
+                        <div class="my-slider-progress-bar"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+    <!-- End Header Jumbotron Dengan Splide -->
 
+    <!-- DataTables -->
     <main class="container my-2">
         <section class="row justify-content-center">
             <div class="col-md">
@@ -77,40 +96,12 @@
             </div>
         </section>
     </main>
+    <!-- End DataTables -->
 
-    <!-- ... Bagian Footer ... -->
-    <footer class="footer">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
-                    <h5 class="resource-heading">Resource</h5>
-                    <ul class="list-unstyled">
-                        <li><a class="light-link" href="https://www.figma.com/">Figma</a></li>
-                        <li><a class="light-link" href="https://code.visualstudio.com/">VisualStudio Code</a></li>
-                        <li><a class="light-link">Supported Hardware</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
-                    <h5 class="resource-heading">Activity</h5>
-                    <ul class="list-unstyled">
-                        <li><a class="light-link">FullStack Developer</a></li>
-                        <li><a class="light-link">UI / UX</a></li>
-                        <li><a class="light-link">Desainer Grafis</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
-                    <h5 class="resource-heading">Social</h5>
-                    <ul class="list-unstyled">
-                        <li><a class="light-link" href="https://www.instagram.com/fatonyahmadfauzi">Instagram</a></li>
-                        <li><a class="light-link" href="https://www.tiktok.com/@fatonyahmadfauzi">TikTok</a></li>
-                        <li><a class="light-link" href="https://twitter.com/fatonyahmad89">Twitter</a></li>
-                        <li><a class="light-link" href="https://facebook.com/fatonyahmadfauzi">Facebook</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Fetch API Footer -->
+    <div id="footer"></div>
 
+    <!-- Bagian Copyright -->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
@@ -118,6 +109,7 @@
             </div>
         </div>
     </div>
+    <!-- End Copyright -->
 
     <!-- DataTable JS -->
     <script src="library/js/jquery-3.5.1.js"></script>
@@ -126,12 +118,56 @@
     <script src="library/js/dataTables.responsive.min.js"></script>
     <script src="library/js/responsive.bootstrap5.min.js"></script>
 
+    <!-- Splide JS -->
+    <script src="library/js/splide.min.js"></script>
+    <script>
+        var splide = new Splide('.splide', {
+            type: 'loop', // Enables infinite loop
+            autoplay: true, // Enables auto-scrolling
+            interval: 3000, // Sets the interval between slides in milliseconds
+        });
+        var bar = splide.root.querySelector('.my-slider-progress-bar');
+        
+        // Updates the bar width whenever the carousel moves:
+        splide.on('mounted move', function () {
+            var end = splide.Components.Controller.getEnd() + 1;
+            var rate = Math.min((splide.index + 1) / end, 1);
+            bar.style.width = String(100 * rate) + '%';
+        });
+        
+        splide.mount();
+    </script>
+
     <script>
         var nomor = 1; // Menyimpan nomor urut untuk setiap data
 
         // Fungsi untuk mengformat angka menjadi format mata uang
         function formatCurrency(amount) {
             return "Rp " + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        function deleteSushiData(id) {
+            try {
+                var sushiData = JSON.parse(localStorage.getItem("sushi_data"));
+                
+                // Cari indeks data sushi yang memiliki ID sesuai
+                var indexToDelete = -1;
+                for (var i = 0; i < sushiData.length; i++) {
+                    if (sushiData[i].id_sushi === id) {
+                        indexToDelete = i;
+                        break;
+                    }
+                }
+                
+                // Jika indeks ditemukan, hapus data dan simpan ulang ke localStorage
+                if (indexToDelete !== -1) {
+                    sushiData.splice(indexToDelete, 1);
+                    localStorage.setItem("sushi_data", JSON.stringify(sushiData));
+                    displaySushiData(); // Panggil ulang fungsi untuk menampilkan data terbaru
+                }
+            } catch (error) {
+                console.error("Error deleting sushi data:", error);
+            }
         }
 
         function displaySushiData() {
@@ -165,6 +201,16 @@
                     cellHarga.innerHTML = formatCurrency(currentSushi.harga);
                     cellSubtotal.innerHTML = formatCurrency(currentSushi.subtotal);
                     cellTotalHarga.innerHTML = formatCurrency(currentSushi.totalHarga);
+                    cellAksi.innerHTML = '<button class="btn btn-danger btn-delete" data-id="' + currentSushi.id_sushi + '">Delete</button>';
+
+                    // Tambahkan event listener pada tombol delete
+                    var deleteButton = cellAksi.querySelector(".btn-delete");
+                    if (deleteButton) {
+                        deleteButton.addEventListener("click", function(event) {
+                            var idToDelete = event.target.getAttribute("data-id");
+                            deleteSushiData(idToDelete);
+                        });
+                    }
                 }
             } catch (error) {
                 console.error("Error displaying sushi data:", error);
@@ -204,6 +250,22 @@
             .append('<option value="price-low">Price Low to High</option>');
     </script>
 
+    <!-- Script Fetch API -->
+    <script>
+        fetch('template/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('#navbar').innerHTML = data;
+            });
+
+        fetch('template/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('#footer').innerHTML = data;
+        });
+    </script>
+
+    <!-- Pemanggilan skrip tahun otomatis -->
     <script>
         // Script untuk generate tahun otomatis dalam copyright
         document.getElementById("year").innerHTML = new Date().getFullYear();

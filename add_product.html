@@ -5,45 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Menu Sushi</title>
     <link rel="stylesheet" href="library/css/bootstrap.min.css">
+
+    <!-- Splide CSS -->
+    <link rel="stylesheet" href="library/css/splide.min.css">
+    <style>
+        .my-slider-progress {
+            background: #ccc;
+        }
+        
+        .my-slider-progress-bar {
+            background: greenyellow;
+            height: 2px;
+            transition: width 400ms ease;
+            width: 0;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="gambar/LOGO_FAF.png" alt="fatonyahmadfauzi" width="auto" height="30">
-            </a>
-        </div>
-    </nav>
+    <!-- Fetch API Navbar -->
+    <div id="navbar"></div>
 
+    <!-- Bagian Header Jumbootron Dengan Splide -->
     <header class="container mt-3">
         <div class="row justify-content-center">
-            <div class="col-md">
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-md-6 mb-5">
-                            <h2>Menu Sushi</h2>
-                            <p>Cek semua daftar menu sushi baru!</p>
-                            <a href="daftar_sushi_tersedia" class="btn btn-primary" title="Pergi ke halaman Daftar Sushi Tersedia">
-                                See Sushi Menu
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-center">
-                                <h2>PENDAFTARAN</h2>
-                                <h2>MENU SUSHI</h2>
-                            </div>
-                            <div class="text-center">
-                                <a href="https://www.bing.com/ck/a?!&&p=9272cef5365a687cJmltdHM9MTY5MDkzNDQwMCZpZ3VpZD0zMGNmNjVmNC0zZWJjLTY2MWYtM2VkNy03NmViM2Y3ZjY3ZWImaW5zaWQ9NjM5Mg&ptn=3&hsh=3&fclid=30cf65f4-3ebc-661f-3ed7-76eb3f7f67eb&u=a1L2ltYWdlcy9zZWFyY2g_cT1zdXNoaSZjYm49S25vd2xlZGdlQ2FyZCZzdGlkPWFiNDIxZTMyLTc5ZWMtZjk1Ni05M2IwLWIxMjdlZWU1YTA3OSZGT1JNPUtDSElNTQ&ntb=1" target="_blank">
-                                    <img src="gambar/th.webp" alt="Picture from Microsoft Bing" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
+            <div class="col-md"> <!-- Adjust the column width as needed -->
+                <div class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <div class="jumbotron text-center">
+                                    <h1>Welcome to Our Website</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="jumbotron text-center">
+                                    <h1>Welcome to Our Website</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="jumbotron text-center">
+                                    <h1>Welcome to Our Website</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-
+                    
+                    <!-- Add the progress bar element -->
+                    <div class="my-slider-progress">
+                        <div class="my-slider-progress-bar"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+    <!-- End Header Jumbotron Dengan Splide -->
 
     <main class="container mt-1">
         <!-- Form for input data -->
@@ -100,37 +121,8 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
-                    <h5 class="resource-heading">Resource</h5>
-                    <ul class="list-unstyled">
-                        <li><a class="light-link" href="https://www.figma.com/">Figma</a></li>
-                        <li><a class="light-link" href="https://code.visualstudio.com/">VisualStudio Code</a></li>
-                        <li><a class="light-link">Supported Hardware</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
-                    <h5 class="resource-heading">Activity</h5>
-                    <ul class="list-unstyled">
-                        <li><a class="light-link">FullStack Developer</a></li>
-                        <li><a class="light-link">UI / UX</a></li>
-                        <li><a class="light-link">Desainer Grafis</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6"> <!-- Adjust column sizes as needed -->
-                    <h5 class="resource-heading">Social</h5>
-                    <ul class="list-unstyled">
-                        <li><a class="light-link" href="https://www.instagram.com/fatonyahmadfauzi">Instagram</a></li>
-                        <li><a class="light-link" href="https://www.tiktok.com/@fatonyahmadfauzi">TikTok</a></li>
-                        <li><a class="light-link" href="https://twitter.com/fatonyahmad89">Twitter</a></li>
-                        <li><a class="light-link" href="https://facebook.com/fatonyahmadfauzi">Facebook</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Fetch API Footer -->
+    <div id="footer"></div>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -139,6 +131,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Splide JS -->
+    <script src="library/js/splide.min.js"></script>
+    <script>
+        var splide = new Splide('.splide', {
+            type: 'loop', // Enables infinite loop
+            autoplay: true, // Enables auto-scrolling
+            interval: 3000, // Sets the interval between slides in milliseconds
+        });
+        var bar = splide.root.querySelector('.my-slider-progress-bar');
+        
+        // Updates the bar width whenever the carousel moves:
+        splide.on('mounted move', function () {
+            var end = splide.Components.Controller.getEnd() + 1;
+            var rate = Math.min((splide.index + 1) / end, 1);
+            bar.style.width = String(100 * rate) + '%';
+        });
+        
+        splide.mount();
+    </script>
 
     <script>
         function generateSushiId(currentCount) {
@@ -227,6 +239,21 @@
                 }, 3000);
             }
         }
+    </script>
+
+    <!-- Script Fetch API -->
+    <script>
+        fetch('template/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('#navbar').innerHTML = data;
+            });
+
+        fetch('template/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('#footer').innerHTML = data;
+        });
     </script>
 
     <script>

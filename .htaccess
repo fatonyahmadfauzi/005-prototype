@@ -10,3 +10,6 @@ RewriteRule ^index$ index.html [NC,L]
 
 # Mengatur redirect untuk daftar_sushi_tersedia.html
 RewriteRule ^daftar_sushi_tersedia$ daftar_sushi_tersedia.html [NC,L]
+
+# Mengatur redirect untuk add_product.html
+RewriteRule ^add_product$ add_product.html [NC,L]
