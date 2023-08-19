@@ -485,7 +485,6 @@
         document.addEventListener("DOMContentLoaded", function () {
             var paketMenuRow = document.getElementById("paketMenuRow");
             
-            var paketMenuData = localStorage.getItem("paketMenu");
             var paketMenuArray = JSON.parse(paketMenuData);
 
             if (paketMenuArray && paketMenuArray.length > 0) {
@@ -503,7 +502,6 @@
         document.addEventListener("DOMContentLoaded", function () {
             var tambahanRow = document.getElementById("tambahanRow");
             
-            var tambahanData = localStorage.getItem("tambahan");
             var tambahanArray = JSON.parse(tambahanData);
 
             if (tambahanArray && tambahanArray.length > 0) {
