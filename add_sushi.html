@@ -227,7 +227,7 @@
                     </div>
                 </div>
                 <!-- Alert Success -->
-                <div id="successAlert" class="alert alert-success mt-3" role="alert" style="display: none;">
+                <div id="successAlertDataTambahan" class="alert alert-success mt-3" role="alert" style="display: none;">
                     Data berhasil disimpan!
                 </div>
             </div>
@@ -400,7 +400,7 @@
 
         formTambahan.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
-            
+
             // Get selected IDs
             const selectedPaketMenu = Array.from(document.querySelectorAll('input[name="paketmenu"]:checked')).map(checkbox => checkbox.id);
             const selectedTambahan = Array.from(document.querySelectorAll('input[name="tambahan"]:checked')).map(checkbox => checkbox.id);
@@ -409,7 +409,7 @@
             const selectedTambahanDropdown = document.getElementById('tambahanDropdown');
             const hargaTambahanInput = document.getElementById('harga_tambahan');
             const quantityTambahanInput = document.getElementById('quantity_tambahan');
-            
+
             const tambahanData = {
                 id: selectedTambahanDropdown.value,
                 harga: parseFloat(hargaTambahanInput.value),
@@ -423,43 +423,65 @@
 
             // Show success alert and reset form
             showSuccessAlert(successAlertTambahan);
+
+            // Log tambahanData to console for debugging
+            console.log('tambahanData:', tambahanData);
         });
     </script>
     <!-- End Script Input Paket Menu & Tambahan -->
 
     <!-- Script Input Data Paket Menu & Tambahan -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mengisi opsi dropdown dengan data dari local storage tambahan
-            const tambahanDropdown = document.getElementById('tambahanDropdown');
-            const tambahanDataForm = JSON.parse(localStorage.getItem('tambahanDataForm'));
-            
-            if (tambahanDataForm) {
-                const tambahanData = tambahanDataForm.data;
+        const successAlertDataTambahan = document.getElementById('successAlertDataTambahan');
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const tambahanDropdown = document.getElementById('tambahanDropdown');
+            const hargaTambahanInput = document.getElementById('harga_tambahan');
+            const quantityTambahanInput = document.getElementById('quantity_tambahan');
+
+            // Load data from localStorage
+            const tambahanData = JSON.parse(localStorage.getItem('tambahan'));
+            if (tambahanData) {
                 tambahanData.forEach(function(item) {
                     const option = document.createElement('option');
-                    option.value = item.id;
-                    option.text = item.label; // Anda harus mengganti ini dengan label yang sesuai
+                    option.value = item;
+                    option.text = item;
                     tambahanDropdown.appendChild(option);
                 });
-
-                // Set input values from localStorage
-                const selectedTambahanDropdown = document.getElementById('tambahanDropdown');
-                const hargaTambahanInput = document.getElementById('harga_tambahan');
-                const quantityTambahanInput = document.getElementById('quantity_tambahan');
-
-                selectedTambahanDropdown.value = tambahanDataForm.selectedId;
-                hargaTambahanInput.value = tambahanDataForm.harga;
-                quantityTambahanInput.value = tambahanDataForm.quantity;
             }
-            
-            // Tambahkan event listener untuk submit form
-            const form = document.getElementById('tambahanForm');
+
+            // Add event listener for tambahanDropdown change
+            tambahanDropdown.addEventListener('change', function() {
+                const selectedTambahan = tambahanDropdown.value;
+                if (selectedTambahan) {
+                    const harga = hargaTambahanInput.value;
+                    const quantity = quantityTambahanInput.value;
+
+                    const data = {
+                        tambahan: selectedTambahan,
+                        harga: harga,
+                        quantity: quantity
+                    };
+
+                    // Save data to localStorage
+                    localStorage.setItem('selectedTambahanData', JSON.stringify(data));
+                    
+                    // Log the selected data
+                    console.log('Selected Data:', data);
+                }
+            });
+
+            const form = document.getElementById('tambahanDataForm');
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
                 // Lakukan sesuatu dengan data yang diinputkan, misalnya mengirimkan data ke server
+                
+                // Log the form submission
+                console.log('Form submitted:', event);
             });
+
+            // Show success alert and reset form
+            showSuccessAlert(successAlertDataTambahan);
         });
     </script>
     <!-- End Script Input Data Paket Menu & Tambahan -->
