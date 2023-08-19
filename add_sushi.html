@@ -198,7 +198,27 @@
                 <div class="my-2 p-5 form-input bg-light rounded">
                     <div class="form-container">
                         <form id="tambahanDataForm">
-                            <div class="row">
+                            <div class="row" id="paketMenuRow">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon" for="paketMenuDropdown">Paket Menu</label>
+                                        <select class="form-control" id="paketMenuDropdown" name="paketMenu">
+                                            <option value="">Pilih Paket Menu</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon4" for="harga_tambahan">Harga</label>
+                                        <input type="number" class="form-control" id="harga_tambahan" name="harga_tambahan" placeholder="Harga" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon4" for="quantity_tambahan">Qty</label>
+                                        <input type="number" class="form-control" id="quantity_tambahan" name="quantity_tambahan" placeholder="Qty" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3" id="tambahanRow">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="label-with-colon" for="tambahanDropdown">Tambahan</label>
@@ -432,56 +452,70 @@
 
     <!-- Script Input Data Paket Menu & Tambahan -->
     <script>
-        const successAlertDataTambahan = document.getElementById('successAlertDataTambahan');
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mendapatkan referensi ke elemen dropdown paketMenu dan tambahan
+            var paketMenuDropdown = document.getElementById("paketMenuDropdown");
+            var tambahanDropdown = document.getElementById("tambahanDropdown");
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const tambahanDropdown = document.getElementById('tambahanDropdown');
-            const hargaTambahanInput = document.getElementById('harga_tambahan');
-            const quantityTambahanInput = document.getElementById('quantity_tambahan');
+            // Mendapatkan data dari local storage
+            var paketMenuData = localStorage.getItem("paketMenu");
+            var tambahanData = localStorage.getItem("tambahan");
 
-            // Load data from localStorage
-            const tambahanData = JSON.parse(localStorage.getItem('tambahan'));
-            if (tambahanData) {
-                tambahanData.forEach(function(item) {
-                    const option = document.createElement('option');
-                    option.value = item;
-                    option.text = item;
-                    tambahanDropdown.appendChild(option);
-                });
+            // Mengubah data string menjadi array
+            var paketMenuArray = JSON.parse(paketMenuData);
+            var tambahanArray = JSON.parse(tambahanData);
+
+            // Mengisi dropdown paketMenu
+            for (var i = 0; i < paketMenuArray.length; i++) {
+                var option = document.createElement("option");
+                option.value = paketMenuArray[i];
+                option.text = paketMenuArray[i];
+                paketMenuDropdown.appendChild(option);
             }
 
-            // Add event listener for tambahanDropdown change
-            tambahanDropdown.addEventListener('change', function() {
-                const selectedTambahan = tambahanDropdown.value;
-                if (selectedTambahan) {
-                    const harga = hargaTambahanInput.value;
-                    const quantity = quantityTambahanInput.value;
+            // Mengisi dropdown tambahan
+            for (var j = 0; j < tambahanArray.length; j++) {
+                var option = document.createElement("option");
+                option.value = tambahanArray[j];
+                option.text = tambahanArray[j];
+                tambahanDropdown.appendChild(option);
+            }
+        });
 
-                    const data = {
-                        tambahan: selectedTambahan,
-                        harga: harga,
-                        quantity: quantity
-                    };
+        document.addEventListener("DOMContentLoaded", function () {
+            var paketMenuRow = document.getElementById("paketMenuRow");
+            
+            var paketMenuData = localStorage.getItem("paketMenu");
+            var paketMenuArray = JSON.parse(paketMenuData);
 
-                    // Save data to localStorage
-                    localStorage.setItem('selectedTambahanData', JSON.stringify(data));
-                    
-                    // Log the selected data
-                    console.log('Selected Data:', data);
+            if (paketMenuArray && paketMenuArray.length > 0) {
+                for (var i = 0; i < paketMenuArray.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = paketMenuArray[i];
+                    option.text = paketMenuArray[i];
+                    document.getElementById("paketMenuDropdown").appendChild(option);
                 }
-            });
+            } else {
+                paketMenuRow.style.display = "none";
+            }
+        });
 
-            const form = document.getElementById('tambahanDataForm');
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Lakukan sesuatu dengan data yang diinputkan, misalnya mengirimkan data ke server
-                
-                // Log the form submission
-                console.log('Form submitted:', event);
-            });
+        document.addEventListener("DOMContentLoaded", function () {
+            var tambahanRow = document.getElementById("tambahanRow");
+            
+            var tambahanData = localStorage.getItem("tambahan");
+            var tambahanArray = JSON.parse(tambahanData);
 
-            // Show success alert and reset form
-            showSuccessAlert(successAlertDataTambahan);
+            if (tambahanArray && tambahanArray.length > 0) {
+                for (var i = 0; i < tambahanArray.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = tambahanArray[i];
+                    option.text = tambahanArray[i];
+                    document.getElementById("tambahanDropdown").appendChild(option);
+                }
+            } else {
+                tambahanRow.style.display = "none";
+            }
         });
     </script>
     <!-- End Script Input Data Paket Menu & Tambahan -->
