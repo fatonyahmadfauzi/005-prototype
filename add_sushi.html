@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Menu Sushi</title>
     <link rel="stylesheet" href="library/css/bootstrap.min.css">
+    <link rel="stylesheet" href="library/css/material.ui.min.css">
 
     <!-- Splide CSS -->
     <link rel="stylesheet" href="library/css/splide.min.css">
@@ -22,30 +23,35 @@
     </style>
 </head>
 <body>
+
+    <!-- Bagian Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-            <img src="gambar/LOGO_FAF - White.png" alt="" style="height: 35px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="katalog_sushi">Katalog Sushi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="list_sushi">List Sushi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="add_sushi">Add Sushi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="edit_sushi">Edit Sushi</a>
-                </li>
-            </ul>
+        <div class="container"> <!-- Tambahkan kelas container di sini -->
+            <a class="navbar-brand" href="#">
+                <img src="gambar/LOGO_FAF - White.png" alt="" style="height: 35px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="katalog_sushi">Katalog Sushi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="list_sushi">List Sushi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_sushi">Add Sushi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="edit_sushi">Edit Sushi</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
+    <!-- End Navbar -->
 
     <!-- Bagian Header Jumbootron Dengan Splide -->
     <header class="container mt-3">
@@ -88,6 +94,7 @@
     </header>
     <!-- End Header Jumbotron Dengan Splide -->
 
+    <!-- Bagian Input Data Sushi -->
     <main class="container mt-1">
         <!-- Form for input data -->
         <section class="row justify-content-center">
@@ -102,34 +109,116 @@
                                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Sushi" required>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label class="label-with-colon2" for="paketmenu">Paket Menu</label>
-                                        <select id="paketmenu" name="paketmenu" class="form-control" required>
-                                            <option value="Standar">Standar</option>
-                                            <option value="VIP">VIP</option>
-                                        </select>
+                                        <label class="label-with-colon4" for="harga_sushi">Harga</label>
+                                        <input type="number" class="form-control" id="harga_sushi" name="harga_sushi" placeholder="Harga" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon4" for="quantity_sushi">Qty</label>
+                                        <input type="number" class="form-control" id="quantity_sushi" name="quantity_sushi" placeholder="Qty" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Alert Success -->
+                <div id="successAlertSushi" class="alert alert-success mt-3" role="alert" style="display: none;">
+                    Data berhasil disimpan!
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- End Input Data Sushi -->
+
+    <!-- Bagian Input Paket Menu & Tambahan -->
+    <main class="container mt-1">
+        <!-- Form for input data -->
+        <section class="row justify-content-center">
+            <div class="col-md">
+                <div class="my-2 p-5 form-input bg-light rounded">
+                    <div class="form-container">
+                        <form id="tambahanForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon3">Paket Menu</label>
+                                        <div class="form-check">
+                                            <input id="Standar" class="form-check-input" type="checkbox" name="paketmenu" value="Standar">
+                                            <label class="form-check-label" for="Standar">Standar</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="VIP" class="form-check-input" type="checkbox" name="paketmenu" value="VIP">
+                                            <label class="form-check-label" for="VIP">VIP</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="label-with-colon3">Tambahan</label>
                                         <div class="form-check">
-                                            <input id="sausShoyu" class="form-check-input" type="checkbox" name="tambahan" value="Saus Shoyu">
-                                            <label class="form-check-label" for="sausShoyu">Saus Shoyu</label>
+                                            <input id="Saus Shoyu" class="form-check-input" type="checkbox" name="tambahan" value="Saus Shoyu">
+                                            <label class="form-check-label" for="Saus Shoyu">Saus Shoyu</label>
                                         </div>
                                         <div class="form-check">
-                                            <input id="wasabi" class="form-check-input" type="checkbox" name="tambahan" value="Wasabi">
-                                            <label class="form-check-label" for="wasabi">Wasabi</label>
+                                            <input id="Wasabi" class="form-check-input" type="checkbox" name="tambahan" value="Wasabi">
+                                            <label class="form-check-label" for="Wasabi">Wasabi</label>
                                         </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="label-with-colon4" for="harga">Harga</label>
-                                        <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary" onclick="saveProfile()">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Alert Success -->
+                <div id="successAlertTambahan" class="alert alert-success mt-3" role="alert" style="display: none;">
+                    Paket menu berhasil ditambahkan!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main class="container mt-1" id="tambahanSection">
+        <!-- Form for input data -->
+        <section class="row justify-content-center">
+            <div class="col-md">
+                <div class="my-2 p-5 form-input bg-light rounded">
+                    <div class="form-container">
+                        <form id="tambahanForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon" for="tambahanDropdown">Tambahan</label>
+                                        <select class="form-control" id="tambahanDropdown" name="tambahan">
+                                            <option value="">Pilih Tambahan</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon4" for="harga_sushi">Harga</label>
+                                        <input type="number" class="form-control" id="harga_tambahan" name="harga_tambahan" placeholder="Harga" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="label-with-colon4" for="quantity_sushi">Qty</label>
+                                        <input type="number" class="form-control" id="quantity_tambahan" name="quantity_tambahan" placeholder="Qty" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -142,6 +231,7 @@
             </div>
         </section>
     </main>
+    <!-- End Input Paket Menu & Tambahan -->
 
     <!-- Fetch API Footer -->
     <div id="footer"></div>
@@ -199,102 +289,158 @@
     </script>
 
     <script>
-        function generateSushiId(currentCount) {
-            return "S" + currentCount.toString().padStart(2, '0');
+        // Mengambil referensi form dan input fields
+        const formSushi = document.getElementById('sushiForm');
+        const namaInput = document.getElementById('nama');
+        const hargaInput = document.getElementById('harga_sushi');
+        const qtyInput = document.getElementById('quantity_sushi');
+
+        const successAlertSushi = document.getElementById('successAlertSushi');
+
+        function showSuccessAlert(alertElement) {
+            alertElement.style.display = 'block';
+            alertElement.classList.add('fade-in');
+
+            setTimeout(() => {
+                alertElement.style.display = 'none';
+                alertElement.classList.remove('fade-in');
+            }, 3000); // Hide after 3 seconds
         }
 
-        function saveProfile() {
-            var nama = document.getElementById('nama').value;
-            var paketmenu = document.getElementById('paketmenu').value;
-            var sausShoyu = document.getElementById('sausShoyu').checked ? 'Saus Shoyu' : '';
-            var wasabi = document.getElementById('wasabi').checked ? 'Wasabi' : '';
-            var harga = parseFloat(document.getElementById('harga').value);
+        // Menambahkan event listener pada form
+        formSushi.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman form
 
-            console.log("Nama:", nama);
-            console.log("Paket Menu:", paketmenu);
-            console.log("Saus Shoyu:", sausShoyu);
-            console.log("Wasabi:", wasabi);
-            console.log("Harga:", harga);
+            // Mendapatkan nilai dari input fields
+            const nama = namaInput.value;
+            const harga = parseFloat(hargaInput.value);
+            const qty = parseInt(qtyInput.value);
 
-            // Array Daftar tambahan dan Harga (sesuai yang sudah diberikan sebelumnya)
-            const Paket_menu = ["Standar", "VIP"];
-            const hargaPaket_menu = { "Standar": 350000, "VIP": 1250000 };
-            const hargaTambahan = { "Saus Shoyu": 65000, "Wasabi": 35000 };
+            // Menggunakan objek untuk menyimpan data
+            const sushiData = {
+                nama: nama,
+                harga: harga,
+                qty: qty
+            };
 
-            // Fungsi Menghitung Total (sesuai yang sudah diberikan sebelumnya)
-            function hargaSubtotal(harga_paket, harga_tambahan) {
-                const nilaiHargaA = hargaPaket_menu[harga_paket] || 0;
-                let nilaiHargaB = 0;
-                harga_tambahan.forEach((tambahan) => {
-                    if (hargaTambahan[tambahan]) {
-                        nilaiHargaB += hargaTambahan[tambahan];
-                    }
-                });
+            // Mengambil data yang sudah ada dalam localStorage
+            const existingData = localStorage.getItem('sushiData');
 
-                return nilaiHargaA + nilaiHargaB;
+            // Jika sudah ada data sebelumnya, mengubahnya menjadi array dan menambahkan data baru
+            let sushiArray = [];
+            if (existingData) {
+                sushiArray = JSON.parse(existingData);
             }
+            sushiArray.push(sushiData);
 
-            function totalHarga(Subtotal, Harga_sushi) {
-                return Subtotal + Harga_sushi;
-            }
+            // Menyimpan data baru ke dalam localStorage
+            localStorage.setItem('sushiData', JSON.stringify(sushiArray));
 
-            const subtotal = hargaSubtotal(paketmenu, [sausShoyu, wasabi]);
-            const totalHargaSushi = totalHarga(subtotal, harga);
+            // Mengosongkan input fields setelah penyimpanan
+            namaInput.value = '';
+            hargaInput.value = '';
+            qtyInput.value = '';
 
-            // Menghilangkan nilai kosong dari array tambahan
-            let tambahanCleaned = [sausShoyu, wasabi].filter(item => item !== '');
+            // Menampilkan data yang sudah disimpan dalam console log
+            console.log('Data sushi yang sudah disimpan:', sushiArray);
+            showSuccessAlert(successAlertSushi);
+        });
+    </script>
 
-            if (nama && paketmenu && harga) {
-                // Generate sushi ID
-                var sushiCount = localStorage.getItem("sushi_count") || 0;
-                sushiCount++;
-                localStorage.setItem("sushi_count", sushiCount);
-                var sushiId = generateSushiId(sushiCount);
+    <script>
+        // Define the formTambahan variable
+        const formTambahan = document.getElementById('tambahanForm');
+        const successAlertTambahan = document.getElementById('successAlertTambahan');
 
-                var existingData = JSON.parse(localStorage.getItem("sushi_data")) || [];
+        // Mendapatkan data dari localStorage
+        const selectedPaketMenu = JSON.parse(localStorage.getItem('paketMenu')) || [];
+        const selectedTambahan = JSON.parse(localStorage.getItem('tambahan')) || [];
 
-                var newData = {
-                    id_sushi: sushiId,
-                    nama: nama,
-                    paketmenu: paketmenu,
-                    tambahan: tambahanCleaned,
-                    harga: harga,
-                    subtotal: subtotal,
-                    totalHarga: totalHargaSushi
+        // Mengatur status centang pada checkbox sesuai dengan data yang ada dalam localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            selectedPaketMenu.forEach(function(id) {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.checked = true;
                 }
+            });
 
-                existingData.push(newData);
-                localStorage.setItem("sushi_data", JSON.stringify(existingData));
+            selectedTambahan.forEach(function(id) {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
 
-                // Display success alert
-                document.getElementById("successAlert").style.display = "block";
-                console.log("Success alert displayed");
-
-                // Reset form fields
-                document.getElementById('nama').value = '';
-                document.getElementById('paketmenu').value = 'Standar';
-                document.getElementById('sausShoyu').checked = false;
-                document.getElementById('wasabi').checked = false;
-                document.getElementById('harga').value = '';
-                console.log("Form fields reset");
-
-                // Hide success alert after 3 seconds
-                setTimeout(function () {
-                    document.getElementById("successAlert").style.display = "none";
-                    console.log("Success alert hidden");
-                }, 3000);
+            // Cek apakah ada data dalam localStorage
+            if (selectedPaketMenu.length === 0 && selectedTambahan.length === 0) {
+                // Jika tidak ada data, sembunyikan elemen <main>
+                const tambahanSection = document.getElementById('tambahanSection');
+                if (tambahanSection) {
+                    tambahanSection.style.display = 'none';
+                }
+            } else {
+                // Jika ada data, tampilkan elemen <main>
+                const tambahanSection = document.getElementById('tambahanSection');
+                if (tambahanSection) {
+                    tambahanSection.style.display = 'block';
+                }
             }
-        }
+        });
+
+        formTambahan.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get selected IDs
+            const selectedPaketMenu = Array.from(document.querySelectorAll('input[name="paketmenu"]:checked')).map(checkbox => checkbox.id);
+            const selectedTambahan = Array.from(document.querySelectorAll('input[name="tambahan"]:checked')).map(checkbox => checkbox.id);
+
+            // Get input values
+            const selectedTambahanDropdown = document.getElementById('tambahanDropdown');
+            const hargaTambahanInput = document.getElementById('harga_tambahan');
+            const quantityTambahanInput = document.getElementById('quantity_tambahan');
+            
+            const tambahanData = {
+                id: selectedTambahanDropdown.value,
+                harga: parseFloat(hargaTambahanInput.value),
+                quantity: parseInt(quantityTambahanInput.value)
+            };
+
+            // Store IDs and tambahan data in localStorage
+            localStorage.setItem('paketMenu', JSON.stringify(selectedPaketMenu));
+            localStorage.setItem('tambahan', JSON.stringify(selectedTambahan));
+            localStorage.setItem('tambahanData', JSON.stringify(tambahanData));
+
+            // Show success alert and reset form
+            showSuccessAlert(successAlertTambahan);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mengisi opsi dropdown dengan data dari local storage tambahan
+            const tambahanDropdown = document.getElementById('tambahanDropdown');
+            selectedTambahan.forEach(function(value) {
+                const option = document.createElement('option');
+                option.value = value;
+                option.text = value; // Anda bisa mengganti ini dengan label yang sesuai
+                tambahanDropdown.appendChild(option);
+            });
+
+            // Set input values from localStorage
+            const tambahanData = JSON.parse(localStorage.getItem('tambahanData'));
+            if (tambahanData) {
+                const selectedTambahanDropdown = document.getElementById('tambahanDropdown');
+                const hargaTambahanInput = document.getElementById('harga_tambahan');
+                const quantityTambahanInput = document.getElementById('quantity_tambahan');
+
+                selectedTambahanDropdown.value = tambahanData.id;
+                hargaTambahanInput.value = tambahanData.harga;
+                quantityTambahanInput.value = tambahanData.quantity;
+            }
+        });
     </script>
 
     <!-- Script Fetch API -->
     <script>
-        fetch('template/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('#navbar').innerHTML = data;
-            });
-
         fetch('template/footer.html')
             .then(response => response.text())
             .then(data => {
