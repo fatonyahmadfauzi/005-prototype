@@ -396,6 +396,17 @@
         const selectedPaketMenu = JSON.parse(localStorage.getItem('paketMenu')) || [];
         const selectedTambahan = JSON.parse(localStorage.getItem('tambahan')) || [];
 
+        // Tambahkan data tambahan yang akan disimpan dalam localStorage
+        const tambahanList = [
+            { id: "T01", nama: "Saus Shoyu" },
+            { id: "T02", nama: "Wasabi" }
+        ];
+
+        const paket_menuList = [
+            { id: "PM01", nama: "Standar" },
+            { id: "PM02", nama: "VIP" }
+        ];
+
         // Mengatur status centang pada checkbox sesuai dengan data yang ada dalam localStorage
         document.addEventListener('DOMContentLoaded', function() {
             selectedPaketMenu.forEach(function(id) {
@@ -435,6 +446,10 @@
             const selectedPaketMenu = Array.from(document.querySelectorAll('input[name="paketmenu"]:checked')).map(checkbox => checkbox.id);
             const selectedTambahan = Array.from(document.querySelectorAll('input[name="tambahan"]:checked')).map(checkbox => checkbox.id);
 
+            // Tambahkan langkah ini untuk mendapatkan tambahan yang dipilih berdasarkan ID
+            const selectedTambahanList = tambahanList.filter(item => selectedTambahan.includes(item.nama)).map(item => item.id);
+            const selectedPaketMenuList = paket_menuList.filter(item => selectedPaketMenu.includes(item.nama)).map(item => item.id);
+            
             // Get input values
             const selectedTambahanDropdown = document.getElementById('tambahanDropdown');
             const hargaTambahanInput = document.getElementById('harga_tambahan');
@@ -446,10 +461,12 @@
                 quantity: parseInt(quantityTambahanInput.value)
             };
 
-            // Store IDs and tambahan data in localStorage
+            // Store IDs, tambahan data, and selected tambahan list in localStorage
             localStorage.setItem('paketMenu', JSON.stringify(selectedPaketMenu));
             localStorage.setItem('tambahan', JSON.stringify(selectedTambahan));
             localStorage.setItem('tambahanData', JSON.stringify(tambahanData));
+            localStorage.setItem('selectedTambahan', JSON.stringify(selectedTambahanList));
+            localStorage.setItem('selectedPaketMenu', JSON.stringify(selectedPaketMenuList));
 
             // Log tambahanData to console for debugging
             console.log('tambahanData:', tambahanData);
@@ -458,6 +475,7 @@
             location.reload();
         });
     </script>
+
     <!-- End Script Input Paket Menu & Tambahan -->
 
     <!-- Script Input Data Paket Menu & Tambahan -->
