@@ -453,19 +453,15 @@
     <!-- Script Input Data Paket Menu & Tambahan -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Mendapatkan referensi ke elemen dropdown paketMenu dan tambahan
             var paketMenuDropdown = document.getElementById("paketMenuDropdown");
             var tambahanDropdown = document.getElementById("tambahanDropdown");
 
-            // Mendapatkan data dari local storage
             var paketMenuData = localStorage.getItem("paketMenu");
             var tambahanData = localStorage.getItem("tambahan");
 
-            // Mengubah data string menjadi array
-            var paketMenuArray = JSON.parse(paketMenuData);
-            var tambahanArray = JSON.parse(tambahanData);
+            var paketMenuArray = JSON.parse(paketMenuData) || [];
+            var tambahanArray = JSON.parse(tambahanData) || [];
 
-            // Mengisi dropdown paketMenu
             for (var i = 0; i < paketMenuArray.length; i++) {
                 var option = document.createElement("option");
                 option.value = paketMenuArray[i];
@@ -473,45 +469,20 @@
                 paketMenuDropdown.appendChild(option);
             }
 
-            // Mengisi dropdown tambahan
             for (var j = 0; j < tambahanArray.length; j++) {
                 var option = document.createElement("option");
                 option.value = tambahanArray[j];
                 option.text = tambahanArray[j];
                 tambahanDropdown.appendChild(option);
             }
-        });
 
-        document.addEventListener("DOMContentLoaded", function () {
             var paketMenuRow = document.getElementById("paketMenuRow");
-            
-            var paketMenuArray = JSON.parse(paketMenuData);
-
-            if (paketMenuArray && paketMenuArray.length > 0) {
-                for (var i = 0; i < paketMenuArray.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = paketMenuArray[i];
-                    option.text = paketMenuArray[i];
-                    document.getElementById("paketMenuDropdown").appendChild(option);
-                }
-            } else {
+            if (paketMenuArray.length === 0) {
                 paketMenuRow.style.display = "none";
             }
-        });
 
-        document.addEventListener("DOMContentLoaded", function () {
             var tambahanRow = document.getElementById("tambahanRow");
-            
-            var tambahanArray = JSON.parse(tambahanData);
-
-            if (tambahanArray && tambahanArray.length > 0) {
-                for (var i = 0; i < tambahanArray.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = tambahanArray[i];
-                    option.text = tambahanArray[i];
-                    document.getElementById("tambahanDropdown").appendChild(option);
-                }
-            } else {
+            if (tambahanArray.length === 0) {
                 tambahanRow.style.display = "none";
             }
         });
