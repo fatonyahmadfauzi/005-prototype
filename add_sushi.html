@@ -181,10 +181,6 @@
                         </form>
                     </div>
                 </div>
-                <!-- Alert Success -->
-                <div id="successAlertTambahan" class="alert alert-success mt-3" role="alert" style="display: none;">
-                    Paket menu berhasil ditambahkan!
-                </div>
             </div>
         </section>
     </main>
@@ -335,6 +331,14 @@
             }, 3000); // Hide after 3 seconds
         }
 
+        function generateSushiId(existingData) {
+            const existingSushiArray = JSON.parse(existingData);
+            const idPrefix = 'S';
+            const nextIdNumber = existingSushiArray.length + 1;
+            const formattedIdNumber = String(nextIdNumber).padStart(2, '0');
+            return idPrefix + formattedIdNumber;
+        }
+
         // Menambahkan event listener pada form
         formSushi.addEventListener('submit', function(event) {
             event.preventDefault(); // Mencegah pengiriman form
@@ -344,15 +348,19 @@
             const harga = parseFloat(hargaInput.value);
             const qty = parseInt(qtyInput.value);
 
+            // Mengambil data yang sudah ada dalam localStorage
+            const existingData = localStorage.getItem('sushiData');
+
+            // Jika sudah ada data sebelumnya, menghasilkan ID sushi otomatis
+            const sushiId = existingData ? generateSushiId(existingData) : 'S01';
+
             // Menggunakan objek untuk menyimpan data
             const sushiData = {
+                id_sushi: sushiId,
                 nama: nama,
                 harga: harga,
                 qty: qty
             };
-
-            // Mengambil data yang sudah ada dalam localStorage
-            const existingData = localStorage.getItem('sushiData');
 
             // Jika sudah ada data sebelumnya, mengubahnya menjadi array dan menambahkan data baru
             let sushiArray = [];
@@ -372,6 +380,9 @@
             // Menampilkan data yang sudah disimpan dalam console log
             console.log('Data sushi yang sudah disimpan:', sushiArray);
             showSuccessAlert(successAlertSushi);
+
+            // Reload halaman web setelah data tersimpan
+            location.reload();
         });
     </script>
     <!-- End Script Input Data Sushi -->
@@ -380,7 +391,6 @@
     <script>
         // Define the formTambahan variable
         const formTambahan = document.getElementById('tambahanForm');
-        const successAlertTambahan = document.getElementById('successAlertTambahan');
 
         // Mendapatkan data dari localStorage
         const selectedPaketMenu = JSON.parse(localStorage.getItem('paketMenu')) || [];
@@ -441,11 +451,11 @@
             localStorage.setItem('tambahan', JSON.stringify(selectedTambahan));
             localStorage.setItem('tambahanData', JSON.stringify(tambahanData));
 
-            // Show success alert and reset form
-            showSuccessAlert(successAlertTambahan);
-
             // Log tambahanData to console for debugging
             console.log('tambahanData:', tambahanData);
+
+            // Reload halaman web setelah data tersimpan
+            location.reload();
         });
     </script>
     <!-- End Script Input Paket Menu & Tambahan -->
