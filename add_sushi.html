@@ -188,14 +188,16 @@
             </div>
         </section>
     </main>
+    <!-- End Input Paket Menu & Tambahan -->
 
+    <!-- Bagian Input Data Paket Menu & Tambahan -->
     <main class="container mt-1" id="tambahanSection">
         <!-- Form for input data -->
         <section class="row justify-content-center">
             <div class="col-md">
                 <div class="my-2 p-5 form-input bg-light rounded">
                     <div class="form-container">
-                        <form id="tambahanForm">
+                        <form id="tambahanDataForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
@@ -205,13 +207,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label class="label-with-colon4" for="harga_sushi">Harga</label>
+                                        <label class="label-with-colon4" for="harga_tambahan">Harga</label>
                                         <input type="number" class="form-control" id="harga_tambahan" name="harga_tambahan" placeholder="Harga" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label class="label-with-colon4" for="quantity_sushi">Qty</label>
+                                        <label class="label-with-colon4" for="quantity_tambahan">Qty</label>
                                         <input type="number" class="form-control" id="quantity_tambahan" name="quantity_tambahan" placeholder="Qty" required>
                                     </div>
                                 </div>
@@ -231,11 +233,12 @@
             </div>
         </section>
     </main>
-    <!-- End Input Paket Menu & Tambahan -->
+    <!-- End Input Data Paket Menu & Tambahan -->
 
     <!-- Fetch API Footer -->
     <div id="footer"></div>
 
+    <!-- Bagian Copyright -->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
@@ -243,10 +246,12 @@
             </div>
         </div>
     </div>
+    <!-- End Copyright -->
 
     <script src="library/js/jquery-3.6.0.min.js"></script>
     <script src="library/js/bootstrap.min.js"></script>
 
+    <!-- Script Navbar -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         // Mengambil nama halaman dari URL
@@ -267,6 +272,7 @@
         });
         });
     </script>
+    <!-- End Script Navbar -->
 
     <!-- Splide JS -->
     <script src="library/js/splide.min.js"></script>
@@ -287,7 +293,9 @@
         
         splide.mount();
     </script>
+    <!-- End Splide JS -->
 
+    <!-- Script Input Data Sushi -->
     <script>
         // Mengambil referensi form dan input fields
         const formSushi = document.getElementById('sushiForm');
@@ -346,7 +354,9 @@
             showSuccessAlert(successAlertSushi);
         });
     </script>
+    <!-- End Script Input Data Sushi -->
 
+    <!-- Script Input Paket Menu & Tambahan -->
     <script>
         // Define the formTambahan variable
         const formTambahan = document.getElementById('tambahanForm');
@@ -414,30 +424,45 @@
             // Show success alert and reset form
             showSuccessAlert(successAlertTambahan);
         });
+    </script>
+    <!-- End Script Input Paket Menu & Tambahan -->
 
+    <!-- Script Input Data Paket Menu & Tambahan -->
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mengisi opsi dropdown dengan data dari local storage tambahan
             const tambahanDropdown = document.getElementById('tambahanDropdown');
-            selectedTambahan.forEach(function(value) {
-                const option = document.createElement('option');
-                option.value = value;
-                option.text = value; // Anda bisa mengganti ini dengan label yang sesuai
-                tambahanDropdown.appendChild(option);
-            });
+            const tambahanDataForm = JSON.parse(localStorage.getItem('tambahanDataForm'));
+            
+            if (tambahanDataForm) {
+                const tambahanData = tambahanDataForm.data;
 
-            // Set input values from localStorage
-            const tambahanData = JSON.parse(localStorage.getItem('tambahanData'));
-            if (tambahanData) {
+                tambahanData.forEach(function(item) {
+                    const option = document.createElement('option');
+                    option.value = item.id;
+                    option.text = item.label; // Anda harus mengganti ini dengan label yang sesuai
+                    tambahanDropdown.appendChild(option);
+                });
+
+                // Set input values from localStorage
                 const selectedTambahanDropdown = document.getElementById('tambahanDropdown');
                 const hargaTambahanInput = document.getElementById('harga_tambahan');
                 const quantityTambahanInput = document.getElementById('quantity_tambahan');
 
-                selectedTambahanDropdown.value = tambahanData.id;
-                hargaTambahanInput.value = tambahanData.harga;
-                quantityTambahanInput.value = tambahanData.quantity;
+                selectedTambahanDropdown.value = tambahanDataForm.selectedId;
+                hargaTambahanInput.value = tambahanDataForm.harga;
+                quantityTambahanInput.value = tambahanDataForm.quantity;
             }
+            
+            // Tambahkan event listener untuk submit form
+            const form = document.getElementById('tambahanForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Lakukan sesuatu dengan data yang diinputkan, misalnya mengirimkan data ke server
+            });
         });
     </script>
+    <!-- End Script Input Data Paket Menu & Tambahan -->
 
     <!-- Script Fetch API -->
     <script>
